@@ -34,3 +34,8 @@
 .media{
   padding:30px;
 }
+
+#heatmap{
+  height: 80px;
+  width: 500px;
+}

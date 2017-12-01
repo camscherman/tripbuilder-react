@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button,Card, Container, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
  function QueryForm (props) {
 
@@ -20,8 +20,8 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
    };
 
   return (
-    <div className='container'>
-
+    <Container>
+      <Card>
     <div className = "queryForm">
      <Form className="QueryForm" onSubmit={handleSubmit}>
        <FormGroup>
@@ -45,8 +45,9 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
      </Form>
    </div>
+ </Card>
+ </Container>
 
- </div>
    )
  }
 
