@@ -14,7 +14,9 @@ function ResultRender(props){
     noOfInBoundLegs,
     inBoundDepDateTime,
     inBoundArrDateTime,
-    operatedByAirlineInbound} = props
+    operatedByAirlineInbound,
+    depCode,
+    arrCode} = props
 
     const style = {
       padding:'30px'
@@ -34,8 +36,8 @@ function ResultRender(props){
                <Row>
                  <Col md='4'>
                       <h6>Leaves at</h6>
-                      <p>{moment(outBoundDepDateTime).format('MMMM Do YYYY, h:mm:ss a')}</p></Col>
-                  <Col md='4'><h6>Arrives at</h6><p>{moment(outBoundDepDateTime).format('MMMM Do YYYY, h:mm:ss a')}</p></Col>
+                      <p>{moment(outBoundDepDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
+                  <Col md='4'><h6>Arrives at</h6><p>{moment(outBoundArrDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
                   <Col md='4'><h6>Airline</h6><p>{operatedByAirlineOutbound}</p></Col>
 
                   </Row>
@@ -46,8 +48,8 @@ function ResultRender(props){
             <Row>
             <Col md='4'>
                    <h6>Leaves at</h6>
-                   <p>{moment(outBoundDepDateTime).format('MMMM Do YYYY, h:mm:ss a')}</p></Col>
-               <Col md='4'><h6>Arrives at</h6><p>{moment(outBoundDepDateTime).format('MMMM Do YYYY, h:mm:ss a')}</p></Col>
+                   <p>{moment(inBoundDepDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
+               <Col md='4'><h6>Arrives at</h6><p>{moment(inBoundArrDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
                <Col md='4'><h6>Airline</h6><p>{operatedByAirlineOutbound}</p></Col>
 
                </Row>

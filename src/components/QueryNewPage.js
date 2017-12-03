@@ -5,6 +5,8 @@ import React, {Component} from 'react';
  import moment  from 'moment'
  import IndexModal from './IndexModal'
  import ErrorDiv from './ErrorDiv'
+ import Loading from 'react-loading-animation'
+
 
 
  class QueryNewPage extends Component {
@@ -16,7 +18,11 @@ import React, {Component} from 'react';
        queryResults: [],
        isLoading: false,
        indexVals: [],
-       errors:[]
+       errors:[],
+       depCode:"",
+       arrCode:"",
+       selectedOptionOut: "",
+       selectedOptionIn: ""
 
      }
    }
@@ -25,16 +31,17 @@ import React, {Component} from 'react';
      console.log('Sending query!');
      this.setState({isLoading: true})
      setTimeout(()=> (this.state.isLoading === true) && this.setState({isLoading:false}), 8000)
-    //  Query
-    //    .create(query)
-    //    .then(res => {
-    //      console.log(res)
-    //      this.setState({
-    //        queryResults: res,
-    //        isLoading: false
-     //
-    //      })
-    //    })
+     Query
+       .create(query)
+       .then(res => {
+         if(!!res && res.length > 0){
+         this.setState({
+           queryResults: res,
+           isLoading: false
+
+         })
+       }
+       })
     Query
     .getIndex(query)
     .then(res =>{
@@ -49,7 +56,10 @@ import React, {Component} from 'react';
         .getStored(query)
         .then(res =>{
           this.setState({
-            queryResults:res
+            queryResults:res,
+            depCode: query.depCode,
+            arrCode: query.arrCode
+
           }
         )
         return res
@@ -79,10 +89,18 @@ import React, {Component} from 'react';
 
    }
 
+   handleChangeOutbound = (selectedOptionOut) =>{
+     this.setState({selectedOptionOut})
+   }
+   handleChangeInbound = (selectedOptionIn) =>{
+     this.setState({selectedOptionIn})
+   }
+
 
 
 
    render () {
+
      const hasResults = this.state.queryResults.length > 0
      const hasIndex = this.state.indexVals.length > 0
      const results = this.state.queryResults
@@ -93,10 +111,22 @@ import React, {Component} from 'react';
 
        <div className="QueryNewPage">
 
-         {!hasResults && !hasIndex && <QueryForm onSubmit={this.createQuery}/>}
+         {!hasResults && !hasIndex && <QueryForm
+                                        outValue = {this.state.selectedOptionOut.value}
+                                        inValue = {this.state.selectedOptionIn.value}
+                                        handleChangeOutbound={this.handleChangeOutbound}
+                                        handleChangeInbound={this.handleChangeInbound}
+                                        onSubmit={this.createQuery}/>}
+
          {hasErrors && <ErrorDiv errors ={this.state.errors} />}
-         {hasIndex && <IndexModal  index = {indexVals}/>}
-         {hasResults && <QueryResults queryResults={results} loading ={isLoading} index = {indexVals}/>}
+         {isLoading && <Loading />}
+         {hasIndex && <IndexModal  depCode={this.state.depCode} arrCode={this.state.arrCode} index = {indexVals}/>}
+         {hasResults && <QueryResults
+           queryResults={results}
+
+           index = {indexVals}
+           depCode= {this.state.depCode}
+           arrCode={this.state.arrCode}/>}
        </div>
      )
    }

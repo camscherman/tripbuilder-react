@@ -12,6 +12,7 @@ import {
 //PAGES
 
 import QueryNewPage from './QueryNewPage'
+import BestDealsPage from './BestDealsPage'
 import UsersNewPage from './UsersNewPage'
 import SignUpSuccess from './SignUpSuccess'
 import SignInPage from './SignInPage'
@@ -54,7 +55,7 @@ class App extends Component {
           <NavLink href='/query/new'>Tell Me When to Go</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href='/'>Tell Me Where to Go</NavLink>
+          <NavLink href='/query/allroutes'>Tell Me Where to Go</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href = '/users/new'  >Sign Up</NavLink>
@@ -75,6 +76,7 @@ class App extends Component {
 
 
           <Route path='/query/new' component = {QueryNewPage} />
+          <Route path = '/query/allroutes' component = {BestDealsPage} />
           <Route path ='/users/new' component ={UsersNewPage} />
           <Route path ='/SignUpSuccess' component ={SignUpSuccess} />
           <Route onSubmit = {this.isSignedIn()} path = '/sign_in' component ={SignInPage} />

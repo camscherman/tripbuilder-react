@@ -27,6 +27,13 @@ export const Query = {
                       method: 'GET',
                       headers: {'Content-Type': 'application/json'}
                     }).then(res => res.json())
+ },
+ getAllRoutes(params){
+   return fetch(`${BASE_URL}/query/allroutes`,
+                {
+                  method:'GET',
+                  headers: {'Content-Type': 'application/json'}
+                }).then(res => res.json())
  }
 }
 

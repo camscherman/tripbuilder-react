@@ -32,12 +32,17 @@ class IndexModal extends React.Component {
 
   render() {
 
-    const {index} = this.props
-    const ratings = index.map((vals)=> vals.scale)
+    const {index, depCode, arrCode} = this.props
+    const ratings = index.map((vals)=>{ return {x: vals.date,y:vals.scale}})
     const days = index.map((vals)=> vals.date)
+
     const data = {
       labels: days,
       datasets: [{
+        label: `Flights price from ${depCode} to ${arrCode}`,
+        backgroundColor: 'rgba(75,192,192,0.4)',
+
+
         data: ratings
       }]
     }
@@ -50,7 +55,7 @@ class IndexModal extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}></ModalHeader>
           <ModalBody>
-            <Container id="heatmap">
+            <Container id="chart">
               <Line data={data}></Line>
 
 
