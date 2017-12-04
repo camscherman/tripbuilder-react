@@ -47,7 +47,7 @@ import 'react-select/dist/react-select.css';
            <Select name='arrival' value={inValue} options={options} onChange={handleChangeInbound} matchPos='any' matchProp='any'/>
        </FormGroup>
        <FormGroup>
-           <Label htmlFor="length">Length City</Label>
+           <Label htmlFor="length">Desired trip length (days)</Label>
            <Input name="length"/>
        </FormGroup>
        <FormGroup>

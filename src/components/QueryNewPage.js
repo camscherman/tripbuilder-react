@@ -5,7 +5,8 @@ import React, {Component} from 'react';
  import moment  from 'moment'
  import IndexModal from './IndexModal'
  import ErrorDiv from './ErrorDiv'
- import Loading from 'react-loading-animation'
+
+ import ModalBackground from './ModalBackground'
 
 
 
@@ -31,17 +32,17 @@ import React, {Component} from 'react';
      console.log('Sending query!');
      this.setState({isLoading: true})
      setTimeout(()=> (this.state.isLoading === true) && this.setState({isLoading:false}), 8000)
-     Query
-       .create(query)
-       .then(res => {
-         if(!!res && res.length > 0){
-         this.setState({
-           queryResults: res,
-           isLoading: false
-
-         })
-       }
-       })
+    //  Query
+    //    .create(query)
+    //    .then(res => {
+    //      if(!!res && res.length > 0){
+    //      this.setState({
+    //        queryResults: res,
+    //        isLoading: false
+     //
+    //      })
+    //    }
+    //    })
     Query
     .getIndex(query)
     .then(res =>{
@@ -119,7 +120,8 @@ import React, {Component} from 'react';
                                         onSubmit={this.createQuery}/>}
 
          {hasErrors && <ErrorDiv errors ={this.state.errors} />}
-         {isLoading && <Loading />}
+         
+         {isLoading && <ModalBackground />}
          {hasIndex && <IndexModal  depCode={this.state.depCode} arrCode={this.state.arrCode} index = {indexVals}/>}
          {hasResults && <QueryResults
            queryResults={results}

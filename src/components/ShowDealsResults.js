@@ -2,9 +2,9 @@ import React from 'react'
 import DealRender from './DealRender'
 
 export default function ShowDealsResults (props){
-  const {dealsResults} = props
+  const {dealResults} = props
   return (
-    dealsResults.map(result=>(
+    dealResults.map(result=>(
       <DealRender result ={result} />
     ))
   )

@@ -2,8 +2,8 @@ import React from 'react'
 import { Card,Row,Col, Button, CardHeader, CardFooter, CardBody,
   CardTitle, CardText, Nav } from 'reactstrap'
 import moment from 'moment'
+import {getAirlineName} from '../lib/helpers'
 
-// import {airlines} from 'airline-codes'
 
 function ResultRender(props){
   const {price,
@@ -38,7 +38,7 @@ function ResultRender(props){
                       <h6>Leaves at</h6>
                       <p>{moment(outBoundDepDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
                   <Col md='4'><h6>Arrives at</h6><p>{moment(outBoundArrDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
-                  <Col md='4'><h6>Airline</h6><p>{operatedByAirlineOutbound}</p></Col>
+                  <Col md='4'><h6>Airline</h6><p>{getAirlineName(operatedByAirlineOutbound)}</p></Col>
 
                   </Row>
                 </Card>
@@ -50,7 +50,7 @@ function ResultRender(props){
                    <h6>Leaves at</h6>
                    <p>{moment(inBoundDepDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
                <Col md='4'><h6>Arrives at</h6><p>{moment(inBoundArrDateTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
-               <Col md='4'><h6>Airline</h6><p>{operatedByAirlineOutbound}</p></Col>
+               <Col md='4'><h6>Airline</h6><p>{getAirlineName(operatedByAirlineOutbound)}</p></Col>
 
                </Row>
           </Card>

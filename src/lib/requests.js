@@ -29,7 +29,8 @@ export const Query = {
                     }).then(res => res.json())
  },
  getAllRoutes(params){
-   return fetch(`${BASE_URL}/query/allroutes`,
+   const{startDate, endDate} = params
+   return fetch(`${BASE_URL}/query/allroutes?startDate=${startDate}&endDate=${endDate}`,
                 {
                   method:'GET',
                   headers: {'Content-Type': 'application/json'}
