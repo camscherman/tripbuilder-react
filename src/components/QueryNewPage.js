@@ -5,6 +5,7 @@ import React, {Component} from 'react';
  import moment  from 'moment'
  import IndexModal from './IndexModal'
  import ErrorDiv from './ErrorDiv'
+ import QueryModal from './QueryModal'
 
  import ModalBackground from './ModalBackground'
 
@@ -32,17 +33,17 @@ import React, {Component} from 'react';
      console.log('Sending query!');
      this.setState({isLoading: true})
      setTimeout(()=> (this.state.isLoading === true) && this.setState({isLoading:false}), 8000)
-    //  Query
-    //    .create(query)
-    //    .then(res => {
-    //      if(!!res && res.length > 0){
-    //      this.setState({
-    //        queryResults: res,
-    //        isLoading: false
-     //
-    //      })
-    //    }
-    //    })
+     Query
+       .create(query)
+       .then(res => {
+         if(!!res && res.length > 0){
+         this.setState({
+           queryResults: res,
+           isLoading: false
+
+         })
+       }
+       })
     Query
     .getIndex(query)
     .then(res =>{
@@ -96,7 +97,11 @@ import React, {Component} from 'react';
    handleChangeInbound = (selectedOptionIn) =>{
      this.setState({selectedOptionIn})
    }
+   componentDidMount(){
+     const {blurBackground} = this.props
 
+
+   }
 
 
 
@@ -108,11 +113,13 @@ import React, {Component} from 'react';
      const isLoading = this.state.isLoading
      const indexVals = this.state.indexVals
      const hasErrors = this.state.errors.length > 0
+     const {setBlurred} = this.props
      return (
 
        <div className="QueryNewPage">
 
-         {!hasResults && !hasIndex && <QueryForm
+         {!hasResults && !hasIndex && <QueryModal
+                                        toggleBlur ={this.props.toggleBlur}
                                         outValue = {this.state.selectedOptionOut.value}
                                         inValue = {this.state.selectedOptionIn.value}
                                         handleChangeOutbound={this.handleChangeOutbound}
@@ -120,10 +127,10 @@ import React, {Component} from 'react';
                                         onSubmit={this.createQuery}/>}
 
          {hasErrors && <ErrorDiv errors ={this.state.errors} />}
-         
+
          {isLoading && <ModalBackground />}
          {hasIndex && <IndexModal  depCode={this.state.depCode} arrCode={this.state.arrCode} index = {indexVals}/>}
-         {hasResults && <QueryResults
+         {hasResults && <QueryResults setBlurred={setBlurred}
            queryResults={results}
 
            index = {indexVals}

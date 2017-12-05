@@ -48,9 +48,9 @@ class IndexModal extends React.Component {
     }
 
     return (
-      <div>
+      <div className='indexModal'>
         <Container>
-        <Button outline color="success" onClick={this.toggle} className="ml auto">View Dates</Button>
+        <Button outline color="dark" onClick={this.toggle} className="ml auto">View Detailed Route Info</Button>
       </Container>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}></ModalHeader>

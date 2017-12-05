@@ -1,7 +1,9 @@
 import React from 'react'
 import { Card,Row,Col, Button, CardHeader, CardFooter, CardBody,
   CardTitle, CardText, Nav } from 'reactstrap'
+
 import moment from 'moment'
+import {getCityName, getAirportName} from '../lib/helpers'
 
 export default function DealRender (props){
   const {result} = props
@@ -15,7 +17,15 @@ export default function DealRender (props){
 {/* [{"outBoundId":"FI696S9FI500S9FI","depCode":"YVR","arrCode":"AMS","price":372.29,"index":-0.779946,"dep-time":"2018-04-06T07:45:00.000Z"}, */}
 
     <Card>
-     <CardHeader ><Row><Col md='4' ><h3>{`${depCode} to ${arrCode}`}</h3></Col><Col md='8'><h6>{`Price:$${price}`}</h6><strong>{`${(Math.abs(index).toFixed(2))*100}% ${aboveBelow} the average daily low price!`}</strong></Col> </Row></CardHeader>
+     <CardHeader >
+       <Row>
+         <Col md='4' ><h3>{`${getCityName(depCode)} to ${getCityName(arrCode)}`}</h3></Col>
+         <Col md='8'>
+           <h6>{`Price:$${price.toFixed(2)}`}</h6>
+           <strong>{`${(Math.abs(index).toFixed(2))*100}% ${aboveBelow} the average daily low price!`}</strong>
+         </Col>
+      </Row>
+    </CardHeader>
      <CardBody>
        <Row>
          <Col md='12'>
@@ -23,9 +33,13 @@ export default function DealRender (props){
              <h3>Outbound Leg</h3>
              <Row>
                <Col md='4'>
-                    <h6>Leaves at</h6>
-                    <p>{moment(depTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
-                <Col md='4'><h6>Arrives at</h6><p>{moment(arrTime).format("dddd, MMMM Do YYYY, h:mm a")}</p></Col>
+                    <h6>Leaves from {getAirportName(depCode)}</h6>
+                    <p>{moment(depTime).format("dddd, MMMM Do YYYY, h:mm a")}</p>
+                    </Col>
+                <Col md='4'><h6>Arrives at {getAirportName(arrCode)}</h6>
+                          <p>{moment(arrTime).format("dddd, MMMM Do YYYY, h:mm a")}</p>
+                        
+                        </Col>
 
 
                 </Row>

@@ -2,7 +2,8 @@ import React from 'react'
 import { Card,Row,Col, Button, CardHeader, CardFooter, CardBody,
   CardTitle, CardText, Nav } from 'reactstrap'
 import moment from 'moment'
-import {getAirlineName} from '../lib/helpers'
+import {getAirlineName, getCityName, getAirportName} from '../lib/helpers'
+
 
 
 function ResultRender(props){
@@ -27,7 +28,7 @@ function ResultRender(props){
 
 
      <Card>
-       <CardHeader ><Row><Col md='4' ><h3>${price.toFixed(2)}</h3></Col> </Row></CardHeader>
+       <CardHeader ><Row><Col md='4' ><h3>${!!price && price.toFixed(2)}</h3></Col> </Row></CardHeader>
        <CardBody>
          <Row>
            <Col>

@@ -7,6 +7,7 @@ import 'react-select/dist/react-select.css';
  function QueryForm(props) {
 
    const {onSubmit = ()=>{}} = props
+   const {toggle} =props
    const {handleChangeOutbound =()=>{}}= props
    const {handleChangeInbound=()=>{}}= props
    const airports = Airports
@@ -19,6 +20,7 @@ import 'react-select/dist/react-select.css';
 
    const handleSubmit = event => {
      event.preventDefault();
+     toggle()
 
      const {currentTarget} = event;
 

@@ -3,6 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+*{
+  font-family: Rubik;
+}
 
 #heatmap{
   margin: 5px;
@@ -41,8 +44,120 @@ body {
   background-color: rgba(0,0,0,0.15);
   position:fixed;
   top:0;
+  left:0;
 }
 .loading{
   justify-content: center;
   align-items: center;
+}
+
+#dealsModalBox{
+  height:250px;
+  width: 500px;
+
+}
+.background{
+  background-image: url('/images/ricepaddy.jpg');
+  height:100%;
+  width: 100%;
+  position:fixed;
+  z-index: -1;
+  top:0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 40px;
+  color: white;
+
+
+
+
+}
+.backgroundBlur{
+  background-image: url('/images/ricepaddy.jpg');
+  height:100%;
+  width: 100%;
+  position: fixed;
+  filter: blur(5px);
+  z-index: -1;
+  top:0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 40px;
+  color:white;
+}
+backgroundTitle{
+  font-size: 85px;
+}
+
+.navbar{
+  background-color: rgba(255,255,255,1);
+  position: fixed;
+  margin-bottom: 20px;
+  z-index: +2;
+
+}
+
+.appBody{
+
+  padding:0px;
+
+}
+.indexModal{
+  margin:20px;
+}
+.QueryNewPage{
+  margin-top: 80px;
+
+}
+.BestDealsPage{
+  margin-top: 80px;
+}
+.welcomePage{
+  display: flex;
+  flex-direction: column;
+  height:100vh;
+  align-items: center;
+}
+
+.welcomeCard{
+  margin-top:15%;
+  justify-content: center;
+
+  animation-duration: 1000ms;
+  animation-name: fadein;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  top: 800;
+  opacity: 0;
+
+}
+@keyframes fadein {
+0%  {
+    opacity: 0;
+    transform: translateY(100px) rotate3d(0, 0, 1, 8deg);
+}
+
+
+100% {
+    opacity: 1;
+    transform: none;
+}
+
+}
+.welcomeButton{
+  margin:15px;
+  height:65px;
+  margin-left: 30px;
+
+}
+a:hover{
+  text-decoration: none !important;
+  color:
+}
+
+.navbar1 a {
+  color: black !important;
+  text-decoration: none;
 }
