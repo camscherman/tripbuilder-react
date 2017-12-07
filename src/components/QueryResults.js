@@ -8,6 +8,7 @@ import {Container} from 'reactstrap'
 
 function QueryResults (props){
   const { queryResults, loading, depCode, arrCode} = props
+  const {toggleBookingModal=()=>{}} = props
 
 
 
@@ -19,7 +20,7 @@ function QueryResults (props){
       <div className = "QueryResult" >
 
         <Container>
-          <ResultRender key = {res.CntID} depCode={depCode} arrCode={arrCode} {...res} />
+          <ResultRender key = {res.CntID} depCode={depCode} arrCode={arrCode} {...res} toggleBookingModal={toggleBookingModal} />
         </Container>
       </div>
       )

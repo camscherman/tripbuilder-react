@@ -22,13 +22,14 @@ function ResultRender(props){
     const style = {
       padding:'30px'
     }
+    const {toggleBookingModal=()=>{}}= props
   return (
       <div>
 
 
 
      <Card>
-       <CardHeader ><Row><Col md='4' ><h3>${!!price && price.toFixed(2)}</h3></Col> </Row></CardHeader>
+       <CardHeader ><Row><Col><h3>{`${getCityName(depCode)} to ${getCityName(arrCode)}`}</h3></Col> <Col md='4' ><h3>${!!price && price.toFixed(2)}</h3></Col></Row></CardHeader>
        <CardBody>
          <Row>
            <Col>
@@ -61,7 +62,7 @@ function ResultRender(props){
        <CardFooter>
          <Nav>
          <Button outline color="dark" className="mr-auto">Save for later</Button>
-         <Button outline color="primary" className='ml-auto'>Book me</Button>
+         <Button outline color="primary" className='ml-auto' onClick={toggleBookingModal}>Book me</Button>
        </Nav>
        </CardFooter>
 

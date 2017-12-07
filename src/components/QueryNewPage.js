@@ -6,6 +6,8 @@ import React, {Component} from 'react';
  import IndexModal from './IndexModal'
  import ErrorDiv from './ErrorDiv'
  import QueryModal from './QueryModal'
+ import BookingModal from './BookingModal'
+ import {formatIndexVals} from '../lib/helpers'
 
  import ModalBackground from './ModalBackground'
 
@@ -23,8 +25,10 @@ import React, {Component} from 'react';
        errors:[],
        depCode:"",
        arrCode:"",
+       modal: false,
        selectedOptionOut: "",
-       selectedOptionIn: ""
+       selectedOptionIn: "",
+       upToDateResults: false
 
      }
    }
@@ -36,10 +40,13 @@ import React, {Component} from 'react';
      Query
        .create(query)
        .then(res => {
-         if(!!res && res.length > 0){
+         const filtered = res.filter(item=> (!!item.price))
+         debugger
+         if(!!filtered && filtered.length > 0){
          this.setState({
-           queryResults: res,
-           isLoading: false
+           queryResults: filtered,
+           isLoading: false,
+           upToDateResults: true
 
          })
        }
@@ -48,7 +55,7 @@ import React, {Component} from 'react';
     .getIndex(query)
     .then(res =>{
       console.log(res)
-      const formattedVals = this.formatIndexVals(res)
+      const formattedVals = formatIndexVals(res)
 
       this.setState({
         indexVals: formattedVals
@@ -73,16 +80,7 @@ import React, {Component} from 'react';
        // user to a different URL.
    }
 
-    formatIndexVals = (arr)=>{
-     const formattedValues = arr.map((item)=>{
-       const date = moment(item[0]).format().slice(0,10)
-       const price = item[1]
-       const scale = Math.floor((item[2] + 0.5)*5)
-       const count = scale > 0 ?  scale : 0
-       return {date: date,price: price, count: count, scale: item[2].toFixed(2)*100 }
-     })
-     return formattedValues
-   }
+
    setErrors=(obj)=>{
      if('error' in obj){
 
@@ -96,6 +94,12 @@ import React, {Component} from 'react';
    }
    handleChangeInbound = (selectedOptionIn) =>{
      this.setState({selectedOptionIn})
+   }
+
+   toggleBookingModal = ()=>{
+     this.setState({
+       modal: !this.state.modal
+     })
    }
    componentDidMount(){
      const {blurBackground} = this.props
@@ -130,7 +134,8 @@ import React, {Component} from 'react';
 
          {isLoading && <ModalBackground />}
          {hasIndex && <IndexModal  depCode={this.state.depCode} arrCode={this.state.arrCode} index = {indexVals}/>}
-         {hasResults && <QueryResults setBlurred={setBlurred}
+         {hasIndex && <BookingModal bookingModal={this.state.modal} toggleBookingModal={this.toggleBookingModal} />}
+         {hasResults && <QueryResults toggleBookingModal= {this.toggleBookingModal} setBlurred={setBlurred}
            queryResults={results}
 
            index = {indexVals}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Alert } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,  Alert } from 'reactstrap';
 import jwtDecode from 'jwt-decode'
 import AuthRoute from './AuthRoute'
 import Background from './Background'
@@ -79,22 +79,22 @@ class App extends Component {
           <Nav className='ml-auto'>
 
             <NavItem className ={`${this.state.linkOneClass}`}>
-          <NavLink href='/query/new'>Tell Me When to Go</NavLink>
+          <Link to='/query/new'>Tell Me When to Go</Link>
         </NavItem>
         <NavItem>
-          <NavLink href='/query/allroutes'>Tell Me Where to Go</NavLink>
+          <Link to='/query/allroutes'>Tell Me Where to Go</Link>
         </NavItem>
-        <NavItem>
-          <NavLink href = '/users/new'  >Sign Up</NavLink>
-        </NavItem>
-        {this.isSignedIn() ?
+        {/* <NavItem>
+          <Link to = '/users/new'  >Sign Up</Link>
+        </NavItem> */}
+        {/* {this.isSignedIn() ?
 
         <NavItem>
-          <NavLink>Signed In as {this.state.user.email}</NavLink>
+          <Link>Signed In as {this.state.user.email}</Link>
         </NavItem> :
         <NavItem>
-          <NavLink href = '/sign_in'  >Sign In</NavLink>
-        </NavItem> }
+          <Link to = '/sign_in'  >Sign In</Link>
+        </NavItem> } */}
       </Nav>
       </Navbar>
 

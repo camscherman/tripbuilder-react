@@ -6,10 +6,8 @@ body {
 *{
   font-family: Rubik;
 }
-
-#heatmap{
-  margin: 5px;
-  padding: 5px;
+.queryResults{
+  margin-bottom: 250px;
 }
 
 .card{
@@ -24,8 +22,8 @@ body {
 .react-calendar-heatmap .color-scale-5 { fill: red; }
 
 .modal-content{
-  height: 450px;
-  width: 800px;
+  min-height: 400px;
+  min-width: 800px;
   justify-content: center;
   margin-left: -100px;
   margin-top: 100px;
@@ -35,6 +33,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.modal-body{
+  padding:20px;
 }
 .modalBackground{
   display: flex;
@@ -55,6 +56,10 @@ body {
   height:250px;
   width: 500px;
 
+}
+
+.navbar{
+  border-bottom: solid black 1px;
 }
 .background{
   background-image: url('/images/ricepaddy.jpg');
@@ -160,4 +165,18 @@ a:hover{
 .navbar1 a {
   color: black !important;
   text-decoration: none;
+}
+
+.dealsModalBody{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content:  center;
+
+}
+a{
+  margin:5px 12px 5px 12px;
+}
+.ShowDealsResults{
+  margin-bottom: 250px;
 }

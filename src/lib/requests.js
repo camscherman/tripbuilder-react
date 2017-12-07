@@ -35,6 +35,14 @@ export const Query = {
                   method:'GET',
                   headers: {'Content-Type': 'application/json'}
                 }).then(res => res.json())
+ },
+
+ getOneDate(params){
+   const {depCode, arrCode, depDate, length} = params
+   return fetch(`${BASE_URL}/query/twowayonedate?depCode={depCode}&arrCode={arrCode}&depDate={depDate}&length={length}`,{
+     method:'GET',
+     headers: {'Content-Type': 'application/json'}
+   }).then(res => res.json())
  }
 }
 
